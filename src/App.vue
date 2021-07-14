@@ -5,6 +5,8 @@
       <h6>
         This app is powerded by Vue 3 | Vuex 4 | Axios | Rails 6 | SQLite 3
       </h6>
+      <AddTodo />
+      <FilterTodos />
       <Todos />
     </div>
   </div>
@@ -12,15 +14,17 @@
 
 <script>
 import Todos from "@/components/Todos.vue";
-
+import AddTodo from "@/components/AddTodo.vue";
+import FilterTodos from "@/components/FilterTodos.vue";
 export default {
   name: "App",
   components: {
     Todos,
+    AddTodo,
+    FilterTodos,
   },
 };
 </script>
-
 <style>
 body {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
