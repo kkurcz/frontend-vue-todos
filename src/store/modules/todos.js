@@ -18,10 +18,11 @@ const actions = {
     const response = await axios.get(api_url);
     commit("setTodos", response.data);
   },
-  async addTodo({ commit }, title) {
+  async addTodo({ commit }, title, description) {
     const response = await axios.post(api_url, {
       todo: {
         title,
+        description,
         completed: false,
       },
     });
