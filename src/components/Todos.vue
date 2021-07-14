@@ -3,52 +3,46 @@
     <h3>Todos</h3>
     <div class="legend">
       <span>Double click to mark as complete.</span>
-      <span> <span class="incomplete-box"></span> = incomplete </span>
-      <span> <span class="complete-box"></span> = complete </span>
+      <span> <span class="incomplete-box"></span> = Incomplete </span>
+      <span> <span class="complete-box"></span> = Complete </span>
     </div>
     <div class="todos">
-      <div v-for="todo in allTodos"
-      :key="todo.id"
-      @dblclick="onDoubleClick(todo)" class="todo"
-      v-bind:class="{'is complete':todo.completed}">
+      <div
+        v-for="todo in allTodos"
+        :key="todo.id"
+        @dblclick="onDoubleClick(todo)"
+        class="todo"
+        v-bind:class="{ 'is-complete': todo.completed }"
+      >
         {{ todo.title }}
-        <i @click = "deleteTodo(todo.id)" class="fas fa-trash-alt"></i>
+        <i @click="deleteTodo(todo.id)" class="fas fa-trash-alt"></i>
       </div>
     </div>
   </div>
 </template>
-
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
-  // import our getters and actions
   name: "Todos",
   methods: {
-    ...mapActions([
-        'fetchTodos',
-        'deleteTodo',
-        'updateTodos'
-    ]),
+    ...mapActions(["fetchTodos", "deleteTodo", "updateTodo"]),
     onDoubleClick(currentTodo) {
       const updatedTodo = {
         id: currentTodo.id,
         title: currentTodo.title,
-        completed: !currentTodo.completed
-      }
-      this.updateTodo(updatedTodo)
+        completed: !currentTodo.completed,
+      };
+      this.updateTodo(updatedTodo);
     },
-    computed: {
-      ...mapGetters([
-        'allTodos',
-
-      ])
-    },
-    created() {
-      this.fetchTodos();
-    }
-  }
+  },
+  computed: {
+    ...mapGetters(["allTodos"]),
+  },
+  created() {
+    this.fetchTodos();
+  },
 };
 </script>
-
 <style scoped>
 .todos {
   display: grid;
@@ -56,8 +50,8 @@ export default {
   grid-gap: 1rem;
 }
 .todo {
-  border: solid 1px #ccc;
-  background: #41b882;
+  border: 1px solid #ccc;
+  background: #41b883;
   padding: 1rem;
   border-radius: 5px;
   text-align: center;
@@ -68,6 +62,7 @@ i {
   position: absolute;
   bottom: 10px;
   right: 10px;
+  color: #fff;
   cursor: pointer;
 }
 .legend {
@@ -85,9 +80,13 @@ i {
   display: inline-block;
   width: 10px;
   height: 10px;
-  background: #41e882;
+  background: #41b882;
 }
-@media(max-width: 500px) {
+.is-complete {
+  background: #35495e;
+  color: #fff;
+}
+@media (max-width: 500px) {
   .todos {
     grid-template-columns: 1fr;
   }
