@@ -21,7 +21,7 @@
         <small>
           {{ todo.description }}
         </small>
-        <i @click="deleteTodo(todo.id)" class="fas fa-trash-alt"></i>
+        <i @click="deleteTodo(todo.id)" class="fas-fa-trash">Delete</i>
       </div>
     </div>
   </div>
